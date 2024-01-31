@@ -381,10 +381,17 @@ function generateOdds(len) {
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
 function getElementByIndices(arr, indices) {
-  if (indices.length === 1) return arr[indices[0]];
-  if (indices.length === 2) return arr[indices[0]][indices[1]];
-  if (indices.length === 3) return arr[indices[0]][indices[1]][indices[2]];
-  return 0;
+  let result;
+  let tempIndeces = indices;
+  function getValueFromInside(array) {
+    if (tempIndeces.length > 1) {
+      const indexInCurrentDepth = tempIndeces[0];
+      tempIndeces = tempIndeces.slice(1);
+      getValueFromInside(array[indexInCurrentDepth]);
+    } else result = array[tempIndeces[0]];
+  }
+  getValueFromInside(arr);
+  return result;
 }
 
 /**
