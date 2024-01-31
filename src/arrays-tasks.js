@@ -387,8 +387,10 @@ function getElementByIndices(arr, indices) {
     if (tempIndeces.length > 1) {
       const indexInCurrentDepth = tempIndeces[0];
       tempIndeces = tempIndeces.slice(1);
-      getValueFromInside(array[indexInCurrentDepth]);
-    } else result = array[tempIndeces[0]];
+      if (indexInCurrentDepth < array.length)
+        getValueFromInside(array[indexInCurrentDepth]);
+      else result = -1;
+    } else result = tempIndeces[0] < array.length ? array[tempIndeces[0]] : -1;
   }
   getValueFromInside(arr);
   return result;
