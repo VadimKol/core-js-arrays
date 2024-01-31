@@ -602,8 +602,51 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  return arr.sort((a, b) => {
+    function getNum(value) {
+      let temp;
+      switch (value) {
+        case 'nine':
+          temp = 9;
+          break;
+        case 'eight':
+          temp = 8;
+          break;
+        case 'seven':
+          temp = 7;
+          break;
+        case 'six':
+          temp = 6;
+          break;
+        case 'five':
+          temp = 5;
+          break;
+        case 'four':
+          temp = 4;
+          break;
+        case 'three':
+          temp = 3;
+          break;
+        case 'two':
+          temp = 2;
+          break;
+        case 'one':
+          temp = 1;
+          break;
+        case 'zero':
+          temp = 0;
+          break;
+        default:
+          break;
+      }
+      return temp;
+    }
+
+    if (getNum(a) < getNum(b)) return -1;
+    if (getNum(a) > getNum(b)) return 1;
+    return 0;
+  });
 }
 
 /**
